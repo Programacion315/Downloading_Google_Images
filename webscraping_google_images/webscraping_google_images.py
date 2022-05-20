@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import os
 import time
+from selenium.webdriver.common.by import By
 
 #EDITAR
 #Aca escribe los objetos que quieres que se organicen en carpetas.
@@ -25,8 +26,13 @@ if not os.path.isdir(folder_name):
 
 def download_image(url, folder_name, num):
     # write image to file
-    reponse = requests.get(url)
+
+    print(url)
+    reponse = requests.get(url);
+
+
     if reponse.status_code==200:
+
         with open(os.path.join('images/' + folder_name, str(num)+".jpg"), 'wb') as file:
             file.write(reponse.content)
 
@@ -76,12 +82,12 @@ while j < len(comidas):
 
         xPath = """//*[@id="islrg"]/div[1]/div[%s]"""%(i)
         previewImageXPath = """//*[@id="islrg"]/div[1]/div[%s]/a[1]/div[1]/img"""%(i)
-        previewImageElement = driver.find_element_by_xpath(previewImageXPath)
+        previewImageElement = driver.find_element(By.XPATH, previewImageXPath)
         previewImageURL = previewImageElement.get_attribute("src")
 
 
 
-        driver.find_element_by_xpath(xPath).click()
+        driver.find_element(By.XPATH, previewImageXPath).click()
 
 
         timeStarted = time.time()
@@ -90,7 +96,7 @@ while j < len(comidas):
 
         while True:
 
-                imageElement = driver.find_element_by_xpath("""//*[@id="Sva75c"]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[2]/div[1]/a/img""")
+                imageElement = driver.find_element(By.XPATH, """//*[@id="Sva75c"]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img""")
                 imageURL= imageElement.get_attribute('src')
 
                 if imageURL != previewImageURL:
@@ -108,6 +114,7 @@ while j < len(comidas):
 
         #Downloading image
         try:
+
             download_image(imageURL, comidas[j], i)
             print("Downloaded element %s out of %s total. URL: %s" % (i, len_containers + 1, imageURL))
         except:
