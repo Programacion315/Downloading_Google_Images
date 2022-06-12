@@ -6,3 +6,6 @@ Realice un fork al proyecto, ahora puedo ingresarle un arreglo de elementos y au
 
 
 ![image](https://user-images.githubusercontent.com/83243886/162602216-a4fd2448-b50a-4626-8b5a-1da5d3f53466.png)
+
+<img  alt="GIF" src="https://github.com/Programacion315/Downloading_Google_Images/blob/master/funcionamiento.gif" />
+
